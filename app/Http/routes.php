@@ -21,6 +21,16 @@ Route::controllers([
 ]);
 
 
+
+Route::get('/register',function(){$user = new App\User();
+ $user->name="ho";
+ $user->email="vasham@vasham.co.id";
+ $user->password = \Illuminate\Support\Facades\Hash::make("haradev");
+ $user->save();
+
+});
+
+
 Route::post('oauth/access_token', function() {
  return Response::json(Authorizer::issueAccessToken());
 });
@@ -34,3 +44,6 @@ Route::get('api', ['before' => 'oauth', function() {
 
 return Response::json($user);
 }]);
+
+Route::resource('petani','CustomerController');
+Route::resource('users','UserController');
